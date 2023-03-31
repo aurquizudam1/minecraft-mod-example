@@ -2,6 +2,7 @@ package es.mariaanasanz.ut7.mods.impl;
 
 import es.mariaanasanz.ut7.mods.base.*;
 import net.minecraft.core.BlockPos;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.BlockState;
@@ -17,6 +18,12 @@ import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+
 @Mod(DamMod.MOD_ID)
 public class ExampleMod extends DamMod implements IBlockBreakEvent, IServerStartEvent,
         IItemPickupEvent, ILivingDamageEvent, IUseItemEvent, IFishedEvent,
@@ -28,7 +35,7 @@ public class ExampleMod extends DamMod implements IBlockBreakEvent, IServerStart
 
     @Override
     public String autor() {
-        return "Javier Jorge Soteras";
+        return "Aimar Urquizu Diego";
     }
 
     @Override
@@ -80,17 +87,7 @@ public class ExampleMod extends DamMod implements IBlockBreakEvent, IServerStart
     @Override
     @SubscribeEvent
     public void onPlayerTouch(PlayerInteractEvent.RightClickBlock event) {
-        System.out.println("¡Has hecho click derecho!");
-        BlockPos pos = event.getPos();
-        BlockState state = event.getLevel().getBlockState(pos);
-        Player player = event.getEntity();
-        ItemStack heldItem = player.getMainHandItem();
-        if (ItemStack.EMPTY.equals(heldItem)) {
-            System.out.println("La mano esta vacia");
-            if (state.getBlock().getName().getString().trim().toLowerCase().endsWith("log")) {
-                System.out.println("¡Has hecho click sobre un tronco!");
-            }
-        }
+
     }
 
     @Override
